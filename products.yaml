@@ -3,6 +3,10 @@ components:
     Productos:
       type: object
       properties:
+        id_producto:
+          type: string
+        descripcion:
+          type: string
 info:
   description: API para microservicios MongoDB
   title: API MongoDB
@@ -45,15 +49,15 @@ paths:
       tags:
         - Productos
       x-openapi-router-controller: swagger_server.controllers.productos_controller
-  /productos/{_}:
+  /productos/{id_producto_}:
     get:
-      operationId: productos_get_by_
+      operationId: productos_get_by_id_producto
       parameters:
-        - name: 
+        - name: id_producto_
           in: path
           required: true
           schema:
-            type: 
+            type: string
       responses:
         '200':
           description: Productos encontrado
@@ -63,33 +67,33 @@ paths:
                 $ref: '#/components/schemas/Productos'
         '404':
           description: No encontrado
-      summary: Obtener productos por 
+      summary: Obtener productos por id_producto
       tags:
         - Productos
       x-openapi-router-controller: swagger_server.controllers.productos_controller
     delete:
-      operationId: productos_delete_by_
+      operationId: productos_delete_by_id_producto
       parameters:
-        - name: 
+        - name: id_producto_
           in: path
           required: true
           schema:
-            type: 
+            type: string
       responses:
         '204':
           description: Eliminado correctamente
-      summary: Eliminar productos por 
+      summary: Eliminar productos por id_producto
       tags:
         - Productos
       x-openapi-router-controller: swagger_server.controllers.productos_controller
     put:
-      operationId: productos_update_by_
+      operationId: productos_update_by_id_producto
       parameters:
-        - name: 
+        - name: id_producto_
           in: path
           required: true
           schema:
-            type: 
+            type: string
       requestBody:
         required: true
         content:
@@ -99,7 +103,7 @@ paths:
       responses:
         '200':
           description: Actualizado correctamente
-      summary: Actualizar productos por 
+      summary: Actualizar productos por id_producto
       tags:
         - Productos
       x-openapi-router-controller: swagger_server.controllers.productos_controller
