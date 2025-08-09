@@ -1,0 +1,105 @@
+components:
+  schemas:
+    Productos:
+      type: object
+      properties:
+info:
+  description: API para microservicios MongoDB
+  title: API MongoDB
+  version: 1.0.0
+openapi: 3.0.3
+paths:
+  /productos:
+    get:
+      operationId: productos_get
+      responses:
+        '200':
+          description: Lista de Productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Productos'
+                x-content-type: application/json
+      summary: Obtener productos
+      tags:
+        - Productos
+      x-openapi-router-controller: swagger_server.controllers.productos_controller
+    post:
+      operationId: productos_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Productos'
+      responses:
+        '201':
+          description: Productos creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Productos'
+      summary: Crear Productos
+      tags:
+        - Productos
+      x-openapi-router-controller: swagger_server.controllers.productos_controller
+  /productos/{_}:
+    get:
+      operationId: productos_get_by_
+      parameters:
+        - name: 
+          in: path
+          required: true
+          schema:
+            type: 
+      responses:
+        '200':
+          description: Productos encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Productos'
+        '404':
+          description: No encontrado
+      summary: Obtener productos por 
+      tags:
+        - Productos
+      x-openapi-router-controller: swagger_server.controllers.productos_controller
+    delete:
+      operationId: productos_delete_by_
+      parameters:
+        - name: 
+          in: path
+          required: true
+          schema:
+            type: 
+      responses:
+        '204':
+          description: Eliminado correctamente
+      summary: Eliminar productos por 
+      tags:
+        - Productos
+      x-openapi-router-controller: swagger_server.controllers.productos_controller
+    put:
+      operationId: productos_update_by_
+      parameters:
+        - name: 
+          in: path
+          required: true
+          schema:
+            type: 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Productos'
+      responses:
+        '200':
+          description: Actualizado correctamente
+      summary: Actualizar productos por 
+      tags:
+        - Productos
+      x-openapi-router-controller: swagger_server.controllers.productos_controller

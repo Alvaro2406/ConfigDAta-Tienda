@@ -1,0 +1,247 @@
+components:
+  schemas:
+    Nodo_productos:
+      type: object
+      properties:
+        id_produto:
+          type: string
+    Nodo_usuarios:
+      type: object
+      properties:
+        id_user:
+          type: string
+    InteractionRelation:
+      type: object
+      properties:
+        source:
+          type: string
+        destination:
+          type: string
+
+info:
+  description: API para gestionar nodos y relaciones
+  title: API Neo4j
+  version: 1.0.0
+openapi: 3.0.3
+paths:
+  /nodo_productos:
+    get:
+      operationId: nodo_productos_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Nodo_productos'
+                type: array
+          description: Lista de nodo_productos
+      summary: Obtener todos los nodo_productos
+      tags:
+      - Nodo_productos
+      x-openapi-router-controller: swagger_server.controllers.nodo_productos_controller
+    post:
+      operationId: nodo_productos_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nodo_productos'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nodo_productos'
+          description: Nodo creado
+      summary: Crear nodo_productos
+      tags:
+      - Nodo_productos
+      x-openapi-router-controller: swagger_server.controllers.nodo_productos_controller
+  /nodo_productos/{id}:
+    delete:
+      operationId: nodo_productos_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Nodo eliminado
+      summary: Eliminar nodo_productos por ID
+      tags:
+      - Nodo_productos
+      x-openapi-router-controller: swagger_server.controllers.nodo_productos_controller
+    get:
+      operationId: nodo_productos_id_get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nodo_productos'
+          description: Nodo encontrado
+        '404':
+          description: Nodo no encontrado
+      summary: Obtener nodo_productos por ID
+      tags:
+      - Nodo_productos
+      x-openapi-router-controller: swagger_server.controllers.nodo_productos_controller
+  /nodo_usuarios:
+    get:
+      operationId: nodo_usuarios_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Nodo_usuarios'
+                type: array
+          description: Lista de nodo_usuarios
+      summary: Obtener todos los nodo_usuarios
+      tags:
+      - Nodo_usuarios
+      x-openapi-router-controller: swagger_server.controllers.nodo_usuarios_controller
+    post:
+      operationId: nodo_usuarios_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nodo_usuarios'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nodo_usuarios'
+          description: Nodo creado
+      summary: Crear nodo_usuarios
+      tags:
+      - Nodo_usuarios
+      x-openapi-router-controller: swagger_server.controllers.nodo_usuarios_controller
+  /nodo_usuarios/{id}:
+    delete:
+      operationId: nodo_usuarios_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Nodo eliminado
+      summary: Eliminar nodo_usuarios por ID
+      tags:
+      - Nodo_usuarios
+      x-openapi-router-controller: swagger_server.controllers.nodo_usuarios_controller
+    get:
+      operationId: nodo_usuarios_id_get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nodo_usuarios'
+          description: Nodo encontrado
+        '404':
+          description: Nodo no encontrado
+      summary: Obtener nodo_usuarios por ID
+      tags:
+      - Nodo_usuarios
+      x-openapi-router-controller: swagger_server.controllers.nodo_usuarios_controller
+
+  /interaction:
+    get:
+      operationId: interaction_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InteractionRelation'
+                type: array
+          description: Lista de relaciones interaction
+      summary: Obtener todas las relaciones interaction
+      tags:
+      - InteractionRelation
+      x-openapi-router-controller: swagger_server.controllers.interaction_controller
+    post:
+      operationId: interaction_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteractionRelation'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InteractionRelation'
+          description: Relación creada
+      summary: Crear relación interaction
+      tags:
+      - InteractionRelation
+      x-openapi-router-controller: swagger_server.controllers.interaction_controller
+
+  /interaction/{id}:
+    get:
+      operationId: interaction_id_get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InteractionRelation'
+          description: Relación encontrada
+        '404':
+          description: Relación no encontrada
+      summary: Obtener relación por ID
+      tags:
+      - InteractionRelation
+      x-openapi-router-controller: swagger_server.controllers.interaction_controller
+    delete:
+      operationId: interaction_id_delete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Relación eliminada correctamente
+        '404':
+          description: Relación no encontrada
+      summary: Eliminar relación por ID
+      tags:
+        - InteractionRelation
+      x-openapi-router-controller: swagger_server.controllers.interaction_controller
+

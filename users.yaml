@@ -1,0 +1,119 @@
+components:
+  schemas:
+    Usuarios:
+      type: object
+      properties:
+        id_user:
+          type: integer
+        nombre_usuario:
+          type: integer
+        email:
+          type: integer
+        password:
+          type: integer
+info:
+  description: API para gestionar productos
+  title: API de Productos
+  version: 1.0.0
+openapi: 3.0.3
+paths:
+  /usuarios:
+    get:
+      operationId: usuarios_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Usuarios'
+                type: array
+                x-content-type: application/json
+          description: Lista de Usuarios
+      summary: Obtener usuarios
+      tags:
+      - Usuarios
+      x-openapi-router-controller: swagger_server.controllers.usuarios_controller
+    post:
+      operationId: usuarios_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuarios'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuarios'
+          description: Usuarios creado correctamente
+      summary: Crear Usuarios
+      tags:
+      - Usuarios
+      x-openapi-router-controller: swagger_server.controllers.usuarios_controller
+  /usuarios/{id_user_}:
+    delete:
+      operationId: usuarios_id_user_delete
+      parameters:
+      - explode: false
+        in: path
+        name: id_user_
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        '204':
+          description: Usuarios eliminado correctamente
+      summary: Eliminar usuarios por ID
+      tags:
+      - Usuarios
+      x-openapi-router-controller: swagger_server.controllers.usuarios_controller
+    get:
+      operationId: usuarios_id_user_get
+      parameters:
+      - explode: false
+        in: path
+        name: id_user_
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuarios'
+          description: Usuarios encontrado
+        '404':
+          description: Usuarios no encontrado
+      summary: Obtener usuarios por su id
+      tags:
+      - Usuarios
+      x-openapi-router-controller: swagger_server.controllers.usuarios_controller
+    put:
+      operationId: usuarios_id_user_put
+      parameters:
+      - explode: false
+        in: path
+        name: id_user_
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuarios'
+        required: true
+      responses:
+        '200':
+          description: Usuarios actualizado correctamente
+      summary: Actualizar usuarios por ID
+      tags:
+      - Usuarios
+      x-openapi-router-controller: swagger_server.controllers.usuarios_controller
